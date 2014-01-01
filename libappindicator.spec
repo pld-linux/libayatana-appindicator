@@ -81,7 +81,7 @@ Ten pakiet zawiera bibliotekę libappindicator opartą na GTK+ 2.x.
 Summary:	Development files for libappindicator (GTK+ 2.x version)
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki libappindicator (wersja dla GTK+ 2.x)
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-gtk2 = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.26
 Requires:	gtk+2-devel >= 2:2.18
 Requires:	libdbusmenu-devel >= 0.5.90
@@ -271,7 +271,8 @@ cd build-gtk$gtkver
 	%{!?with_static_libs:--disable-static} \
 	--with-gtk=$gtkver \
 	--with-html-dir=%{_gtkdocdir}
-%{__make}
+# -j1 because of racy mono build
+%{__make} -j1
 cd ..
 done
 
