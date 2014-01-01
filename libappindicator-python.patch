@@ -1,0 +1,11 @@
+--- libappindicator-12.10.0/configure.ac.orig	2012-07-11 19:28:51.115114265 +0200
++++ libappindicator-12.10.0/configure.ac	2013-12-31 19:22:48.728979962 +0100
+@@ -204,7 +204,7 @@
+ AC_MSG_RESULT($PYGTK_DEFSDIR)
+ 
+ AC_MSG_CHECKING(for pygtk codegen)
+-PYGTK_CODEGEN="$PYTHON `$PKG_CONFIG --variable=codegendir pygtk-2.0`/codegen.py"
++PYGTK_CODEGEN="$PYTHON `$PKG_CONFIG --variable=codegendir pygtk-2.0`/codegen.pyc"
+ AC_SUBST(PYGTK_CODEGEN)
+ AC_MSG_RESULT($PYGTK_CODEGEN)
+ 
