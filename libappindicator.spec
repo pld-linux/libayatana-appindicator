@@ -34,8 +34,8 @@ BuildRequires:	gtk-doc >= 1.9
 %{?with_gtk3:BuildRequires:	libindicator-gtk3-devel >= 0.4.93}
 BuildRequires:	libtool >= 2:2.2
 %{?with_mono:BuildRequires:	mono-csharp >= 1.0}
-# for mono-test
-#%{?with_mono:BuildRequires:	nunit >= 2.4.7}
+# for mono-nunit >= 2.4.7
+%{?with_mono:BuildRequires:	mono-devel >= 2.4.7}
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 2.3.5
 BuildRequires:	python-pygobject-devel >= 0.22
