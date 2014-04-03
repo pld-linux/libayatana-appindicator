@@ -5,12 +5,12 @@
 %bcond_without	static_libs	# static libraries
 %bcond_without	mono		# Mono bindings
 %bcond_without	vala		# Vala APIs
-#
+
 Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
 Name:		libappindicator
 Version:	12.10.0
-Release:	1
+Release:	2
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://launchpad.net/libappindicator/+download
@@ -242,6 +242,9 @@ API języka Vala do biblioteki libappindicator (wersja GTK+ 3.x).
 Summary:	API documentation for libappindicator library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libappindicator
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for libappindicator library (both GTK+ 2.x and 3.x
@@ -263,7 +266,7 @@ Dokumentacja API biblioteki libappindicator (zarówno w wersji GTK+
 %{__autoheader}
 %{__automake}
 
-for gtkver in %{?with_gtk2:2} %{?with_gtk3:3} ; do
+for gtkver in %{?with_gtk2:2} %{?with_gtk3:3}; do
 install -d build-gtk$gtkver
 cd build-gtk$gtkver
 ../%configure \
@@ -279,7 +282,7 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 
-for gtkver in %{?with_gtk2:2} %{?with_gtk3:3} ; do
+for gtkver in %{?with_gtk2:2} %{?with_gtk3:3}; do
 %{__make} -C build-gtk$gtkver install -j1 \
 	DESTDIR=$RPM_BUILD_ROOT
 done
