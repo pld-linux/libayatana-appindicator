@@ -3,14 +3,20 @@
 %bcond_without	gtk2		# GTK+ 2.x version
 %bcond_without	gtk3		# GTK+ 3.x version
 %bcond_without	static_libs	# static libraries
-%bcond_without	mono		# Mono bindings
+%bcond_without	dotnet		# Mono bindings
 %bcond_without	vala		# Vala APIs
 #
+%ifnarch %{ix86} %{x8664} arm aarch64 ia64 mips ppc ppc64 s390x sparc sparcv9 sparc64
+%undefine	with_dotnet
+%endif
+%ifarch i386
+%undefine	with_dotnet
+%endif
 Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
 Name:		libappindicator
 Version:	12.10.0
-Release:	1
+Release:	2
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://launchpad.net/libappindicator/+download
@@ -22,7 +28,7 @@ URL:		https://launchpad.net/libappindicator
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.82
-%{?with_mono:BuildRequires:	dotnet-gtk-sharp2-devel >= 2.12.1}
+%{?with_dotnet:BuildRequires:	dotnet-gtk-sharp2-devel >= 2.12.1}
 BuildRequires:	glib2-devel >= 1:2.26
 BuildRequires:	gobject-introspection-devel >= 0.10
 %{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.18}
@@ -33,13 +39,14 @@ BuildRequires:	gtk-doc >= 1.9
 %{?with_gtk2:BuildRequires:	libindicator-devel >= 0.4.93}
 %{?with_gtk3:BuildRequires:	libindicator-gtk3-devel >= 0.4.93}
 BuildRequires:	libtool >= 2:2.2
-%{?with_mono:BuildRequires:	mono-csharp >= 1.0}
+%{?with_dotnet:BuildRequires:	mono-csharp >= 1.0}
 # for mono-nunit >= 2.4.7
-%{?with_mono:BuildRequires:	mono-devel >= 2.4.7}
+%{?with_dotnet:BuildRequires:	mono-devel >= 2.4.7}
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 2.3.5
 BuildRequires:	python-pygobject-devel >= 0.22
 BuildRequires:	python-pygtk-devel >= 2:2.14.0
+BuildRequires:	sed >= 4.0
 %{?with_vala:BuildRequires:	vala >= 2:0.14.0}
 BuildRequires:	which
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -256,6 +263,9 @@ Dokumentacja API biblioteki libappindicator (zarówno w wersji GTK+
 %patch0 -p1
 %patch1 -p1
 
+# to allow deprecation warnings
+%{__sed} -i -e 's/-Werror //' src/Makefile.am
+
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -330,7 +340,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libappindicator.a
 %endif
 
-%if %{with mono}
+%if %{with dotnet}
 %files -n dotnet-appindicator-sharp-gtk2
 %defattr(644,root,root,755)
 %{_prefix}/lib/mono/gac/appindicator-sharp
