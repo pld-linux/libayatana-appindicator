@@ -16,7 +16,7 @@ Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
 Name:		libappindicator
 Version:	12.10.0
-Release:	3
+Release:	4
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://launchpad.net/libappindicator/+download
