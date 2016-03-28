@@ -5,7 +5,7 @@
 %bcond_without	static_libs	# static libraries
 %bcond_without	dotnet		# Mono bindings
 %bcond_without	vala		# Vala APIs
-#
+
 %ifnarch %{ix86} %{x8664} arm aarch64 ia64 mips ppc ppc64 s390x sparc sparcv9 sparc64
 %undefine	with_dotnet
 %endif
@@ -16,7 +16,7 @@ Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
 Name:		libappindicator
 Version:	12.10.0
-Release:	4
+Release:	5
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://launchpad.net/libappindicator/+download
@@ -173,6 +173,9 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libappindicator (wersja GTK+ 2
 Group:		Development/Libraries
 Requires:	%{name}-gtk2-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n vala-libappindicator-gtk2
 Vala API for libappindicator library (GTK+ 2.x version).
