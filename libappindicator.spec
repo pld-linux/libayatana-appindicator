@@ -16,7 +16,7 @@ Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
 Name:		libappindicator
 Version:	12.10.0
-Release:	5
+Release:	6
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
 #Source0Download: https://launchpad.net/libappindicator/+download
@@ -24,6 +24,7 @@ Source0:	http://launchpad.net/libappindicator/12.10/%{version}/+download/%{name}
 # Source0-md5:	41910f2005edee9240da1e53fffcdc12
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-mono.patch
+Patch2:		mono4.patch
 URL:		https://launchpad.net/libappindicator
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
@@ -268,6 +269,7 @@ Dokumentacja API biblioteki libappindicator (zarówno w wersji GTK+
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 # to allow deprecation warnings
 %{__sed} -i -e 's/-Werror //' src/Makefile.am

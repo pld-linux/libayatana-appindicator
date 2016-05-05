@@ -1,0 +1,11 @@
+--- libappindicator-12.10.0/configure.ac~	2016-05-05 19:40:16.000000000 +0200
++++ libappindicator-12.10.0/configure.ac	2016-05-05 19:40:23.474229450 +0200
+@@ -121,7 +121,7 @@
+       RUNTIME=mono
+    fi
+ 
+-   AC_PATH_PROG(CSC, gmcs, no)
++   AC_PATH_PROG(CSC, dmcs, no)
+    LIB_PREFIX=.so
+    LIB_SUFFIX=
+ fi
