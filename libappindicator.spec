@@ -291,7 +291,7 @@ cd build-gtk$gtkver
 	--with-gtk=$gtkver \
 	--with-html-dir=%{_gtkdocdir}
 # -j1 because of racy mono build
-%{__make} -j1
+%{__make} %{?with_dotnet:-j1}
 cd ..
 done
 
