@@ -281,6 +281,7 @@ Dokumentacja API biblioteki libappindicator (zarówno w wersji GTK+
 %{__autoheader}
 %{__automake}
 
+export CFLAGS="%{rpmcflags} -fcommon"
 for gtkver in %{?with_gtk2:2} %{?with_gtk3:3}; do
 install -d build-gtk$gtkver
 cd build-gtk$gtkver
