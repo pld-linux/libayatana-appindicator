@@ -174,9 +174,7 @@ Summary(pl.UTF-8):	API języka Vala do biblioteki libappindicator (wersja GTK+ 2
 Group:		Development/Libraries
 Requires:	%{name}-gtk2-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n vala-libappindicator-gtk2
 Vala API for libappindicator library (GTK+ 2.x version).
@@ -253,9 +251,7 @@ API języka Vala do biblioteki libappindicator (wersja GTK+ 3.x).
 Summary:	API documentation for libappindicator library
 Summary(pl.UTF-8):	Dokumentacja API biblioteki libappindicator
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for libappindicator library (both GTK+ 2.x and 3.x
