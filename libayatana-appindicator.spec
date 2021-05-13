@@ -14,39 +14,35 @@
 %endif
 Summary:	Application indicators library
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji
-Name:		libappindicator
-Version:	12.10.0
-Release:	6
+Name:		libayatana-appindicator
+Version:	0.5.5
+Release:	1
 License:	LGPL v2.1 or LGPL v3
 Group:		Libraries
-#Source0Download: https://launchpad.net/libappindicator/+download
-Source0:	http://launchpad.net/libappindicator/12.10/%{version}/+download/%{name}-%{version}.tar.gz
-# Source0-md5:	41910f2005edee9240da1e53fffcdc12
-Patch0:		%{name}-python.patch
-Patch1:		%{name}-mono.patch
-Patch2:		mono4.patch
-URL:		https://launchpad.net/libappindicator
+#Source0Download: https://github.com/AyatanaIndicators/libayatana-appindicator/releases
+Source0:	https://github.com/AyatanaIndicators/libayatana-appindicator/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	fd6705ad2793dced95056036ecd73b7f
+Patch0:		libappindicator-mono.patch
+Patch1:		mono4.patch
+URL:		https://github.com/AyatanaIndicators/libayatana-appindicator
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.82
 %{?with_dotnet:BuildRequires:	dotnet-gtk-sharp2-devel >= 2.12.1}
-BuildRequires:	glib2-devel >= 1:2.26
+BuildRequires:	glib2-devel >= 1:2.35.4
 BuildRequires:	gobject-introspection-devel >= 0.10
 %{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.18}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
-BuildRequires:	gtk-doc >= 1.9
+BuildRequires:	gtk-doc >= 1.14
+%{?with_gtk2:BuildRequires:	libayatana-indicator-devel >= 0.6.0}
+%{?with_gtk3:BuildRequires:	libayatana-indicator-gtk3-devel >= 0.6.0}
 %{?with_gtk2:BuildRequires:	libdbusmenu-gtk2-devel >= 0.5.90}
 %{?with_gtk3:BuildRequires:	libdbusmenu-gtk3-devel >= 0.5.90}
-%{?with_gtk2:BuildRequires:	libindicator-devel >= 0.4.93}
-%{?with_gtk3:BuildRequires:	libindicator-gtk3-devel >= 0.4.93}
 BuildRequires:	libtool >= 2:2.2
 %{?with_dotnet:BuildRequires:	mono-csharp >= 1.0}
 # for mono-nunit >= 2.4.7
 %{?with_dotnet:BuildRequires:	mono-devel >= 2.4.7}
 BuildRequires:	pkgconfig
-BuildRequires:	python-devel >= 2.3.5
-BuildRequires:	python-pygobject-devel >= 0.22
-BuildRequires:	python-pygtk-devel >= 2:2.14.0
 BuildRequires:	sed >= 4.0
 %{?with_vala:BuildRequires:	vala >= 2:0.14.0}
 BuildRequires:	which
@@ -66,53 +62,56 @@ obu - potrafi korzystać ze zwykłej szufladki systemowej.
 Summary:	Application indicators library (GTK+ 2.x version)
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji (wersja dla GTK+ 2.x)
 Group:		Libraries
-Requires:	glib2 >= 1:2.26
+Requires:	glib2 >= 1:2.35.4
 Requires:	gtk+2 >= 2:2.18
+Requires:	libayatana-indicator >= 0.6.0
 Requires:	libdbusmenu-gtk2 >= 0.5.90
-Requires:	libindicator >= 0.4.93
 
 %description gtk2
 A library to allow applications to export a menu into the Unity Menu
 bar. Based on KSNI it also works in KDE and will fallback to generic
 Systray support if none of those are available.
 
-This package contains GTK+ 2.x based version of libappindicator.
+This package contains GTK+ 2.x based version of
+libayatana-appindicator.
 
 %description gtk2 -l pl.UTF-8
 Biblioteka pozwalająca aplikacjom eksportować menu do paska menu
 Unity. Jest oparta na KSNI, działa także w KDE, a w przypadku braku
 obu - potrafi korzystać ze zwykłej szufladki systemowej.
 
-Ten pakiet zawiera bibliotekę libappindicator opartą na GTK+ 2.x.
+Ten pakiet zawiera bibliotekę libayatana-appindicator opartą na GTK+
+2.x.
 
 %package gtk2-devel
-Summary:	Development files for libappindicator (GTK+ 2.x version)
-Summary(pl.UTF-8):	Pliki programistyczne biblioteki libappindicator (wersja dla GTK+ 2.x)
+Summary:	Development files for libayatana-appindicator (GTK+ 2.x version)
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki libayatana-appindicator (wersja dla GTK+ 2.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk2 = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.26
+Requires:	glib2-devel >= 1:2.35.4
 Requires:	gtk+2-devel >= 2:2.18
 Requires:	libdbusmenu-devel >= 0.5.90
 
 %description gtk2-devel
 This package contains the header files for developing applications
-that use libappindicator (GTK+ 2.x version).
+that use libayatana-appindicator (GTK+ 2.x version).
 
 %description gtk2-devel -l pl.UTF-8
 Ten pakiet zawiera pliki nagłówkowe do tworzenia aplikacji
-wykorzystujących bibliotekę libappindicator (w wersji dla GTK+ 2.x).
+wykorzystujących bibliotekę libayatana-appindicator (w wersji dla GTK+
+2.x).
 
 %package gtk2-static
-Summary:	Static libappindicator library (GTK+ 2.x version)
-Summary(pl.UTF-8):	Statyczna biblioteka libappindicator (wersja dla GTK+ 2.x)
+Summary:	Static libayatana-appindicator library (GTK+ 2.x version)
+Summary(pl.UTF-8):	Statyczna biblioteka libayatana-appindicator (wersja dla GTK+ 2.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk2-devel = %{version}-%{release}
 
 %description gtk2-static
-Static libappindicator library (GTK+ 2.x version).
+Static libayatana-appindicator library (GTK+ 2.x version).
 
 %description gtk2-static -l pl.UTF-8
-Statyczna biblioteka libappindicator (wersja dla GTK+ 2.x).
+Statyczna biblioteka libayatana-appindicator (wersja dla GTK+ 2.x).
 
 %package -n dotnet-appindicator-sharp-gtk2
 Summary:	Application indicators library for .NET (GTK+ 2.x version)
@@ -122,10 +121,12 @@ Requires:	%{name}-gtk2 = %{version}-%{release}
 Requires:	dotnet-gtk-sharp2 >= 2.12.1
 
 %description -n dotnet-appindicator-sharp-gtk2
-Mono/.NET binding for libappindicator library (GTK+ 2.x version).
+Mono/.NET binding for libayatana-appindicator library (GTK+ 2.x
+version).
 
 %description -n dotnet-appindicator-sharp-gtk2 -l pl.UTF-8
-Wiązania Mono/.NET do biblioteki libappindicator (wersja GTK+ 2.x).
+Wiązania Mono/.NET do biblioteki libayatana-appindicator (wersja GTK+
+2.x).
 
 %package -n dotnet-appindicator-sharp-gtk2-devel
 Summary:	Development files for appindicator .NET binding (GTK+ 2.x version)
@@ -141,143 +142,117 @@ Development files for appindicator .NET binding (GTK+ 2.x version).
 Pliki programistyczne wiązania .NET do biblioteki appindicator (wersja
 GTK+ 2.x).
 
-%package -n python-appindicator-gtk2
-Summary:	Python binding for appindicator library (GTK+ 2.x version)
-Summary(pl.UTF-8):	Wiązanie Pythona do biblioteki appindicator (wersja GTK+ 2.x)
-Group:		Libraries/Python
-Requires:	%{name}-gtk2 = %{version}-%{release}
-Requires:	python-pygobject >= 0.22
-
-%description -n python-appindicator-gtk2
-Python binding for appindicator library (GTK+ 2.x version).
-
-%description -n python-appindicator-gtk2 -l pl.UTF-8
-Wiązanie Pythona do biblioteki appindicator (wersja GTK+ 2.x).
-
-%package -n python-appindicator-gtk2-devel
-Summary:	Development files for Python appindicator binding (GTK+ 2.x version)
-Summary(pl.UTF-8):	Pliki programistyczne wiązania Pythona do biblioteki appindicator (wersja GTK+ 2.x)
-Group:		Development/Libraries
-Requires:	python-appindicator-gtk2 = %{version}-%{release}
-Requires:	python-pygobject-devel >= 0.22
-
-%description -n python-appindicator-gtk2-devel
-Development files for Python appindicator binding (GTK+ 2.x version).
-
-%description -n python-appindicator-gtk2-devel -l pl.UTF-8
-Pliki programistyczne wiązania Pythona do biblioteki appindicator
-(wersja GTK+ 2.x).
-
-%package -n vala-libappindicator-gtk2
-Summary:	Vala API for libappindicator library (GTK+ 2.x version)
-Summary(pl.UTF-8):	API języka Vala do biblioteki libappindicator (wersja GTK+ 2.x)
+%package -n vala-libayatana-appindicator-gtk2
+Summary:	Vala API for libayatana-appindicator library (GTK+ 2.x version)
+Summary(pl.UTF-8):	API języka Vala do biblioteki libayatana-appindicator (wersja GTK+ 2.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk2-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
 BuildArch:	noarch
 
-%description -n vala-libappindicator-gtk2
-Vala API for libappindicator library (GTK+ 2.x version).
+%description -n vala-libayatana-appindicator-gtk2
+Vala API for libayatana-appindicator library (GTK+ 2.x version).
 
-%description -n vala-libappindicator-gtk2 -l pl.UTF-8
-API języka Vala do biblioteki libappindicator (wersja GTK+ 2.x).
+%description -n vala-libayatana-appindicator-gtk2 -l pl.UTF-8
+API języka Vala do biblioteki libayatana-appindicator (wersja GTK+
+2.x).
 
 %package gtk3
 Summary:	Application indicators library (GTK+ 3.x version)
 Summary(pl.UTF-8):	Biblioteka wskaźników aplikacji (wersja dla GTK+ 3.x)
 Group:		Libraries
-Requires:	glib2 >= 1:2.26
+Requires:	glib2 >= 1:2.35.4
 Requires:	gtk+3 >= 3.0
+Requires:	libayatana-indicator-gtk3 >= 0.6.0
 Requires:	libdbusmenu-gtk3 >= 0.5.90
-Requires:	libindicator-gtk3 >= 0.4.93
 
 %description gtk3
 A library to allow applications to export a menu into the Unity Menu
 bar. Based on KSNI it also works in KDE and will fallback to generic
 Systray support if none of those are available.
 
-This package contains GTK+ 3.x based version of libappindicator.
+This package contains GTK+ 3.x based version of
+libayatana-appindicator.
 
 %description gtk3 -l pl.UTF-8
 Biblioteka pozwalająca aplikacjom eksportować menu do paska menu
 Unity. Jest oparta na KSNI, działa także w KDE, a w przypadku braku
 obu - potrafi korzystać ze zwykłej szufladki systemowej.
 
-Ten pakiet zawiera bibliotekę libappindicator opartą na GTK+ 3.x.
+Ten pakiet zawiera bibliotekę libayatana-appindicator opartą na GTK+
+3.x.
 
 %package gtk3-devel
-Summary:	Development files for libappindicator (GTK+ 3.x version)
-Summary(pl.UTF-8):	Pliki programistyczne biblioteki libappindicator (wersja dla GTK+ 3.x)
+Summary:	Development files for libayatana-appindicator (GTK+ 3.x version)
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki libayatana-appindicator (wersja dla GTK+ 3.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk3 = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.26
+Requires:	glib2-devel >= 1:2.35.4
 Requires:	gtk+3-devel >= 3.0
 Requires:	libdbusmenu-devel >= 0.5.90
 
 %description gtk3-devel
 This package contains the header files for developing applications
-that use libappindicator (GTK+ 3.x version).
+that use libayatana-appindicator (GTK+ 3.x version).
 
 %description gtk3-devel -l pl.UTF-8
 Ten pakiet zawiera pliki nagłówkowe do tworzenia aplikacji
-wykorzystujących bibliotekę libappindicator (w wersji dla GTK+ 3.x).
+wykorzystujących bibliotekę libayatana-appindicator (w wersji dla GTK+
+3.x).
 
 %package gtk3-static
-Summary:	Static libappindicator library (GTK+ 3.x version)
-Summary(pl.UTF-8):	Statyczna biblioteka libappindicator (wersja dla GTK+ 3.x)
+Summary:	Static libayatana-appindicator library (GTK+ 3.x version)
+Summary(pl.UTF-8):	Statyczna biblioteka libayatana-appindicator (wersja dla GTK+ 3.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk3-devel = %{version}-%{release}
 
 %description gtk3-static
-Static libappindicator library (GTK+ 3.x version).
+Static libayatana-appindicator library (GTK+ 3.x version).
 
 %description gtk3-static -l pl.UTF-8
-Statyczna biblioteka libappindicator (wersja dla GTK+ 3.x).
+Statyczna biblioteka libayatana-appindicator (wersja dla GTK+ 3.x).
 
-%package -n vala-libappindicator-gtk3
-Summary:	Vala API for libappindicator library (GTK+ 3.x version)
-Summary(pl.UTF-8):	API języka Vala do biblioteki libappindicator (wersja GTK+ 3.x)
+%package -n vala-libayatana-appindicator-gtk3
+Summary:	Vala API for libayatana-appindicator library (GTK+ 3.x version)
+Summary(pl.UTF-8):	API języka Vala do biblioteki libayatana-appindicator (wersja GTK+ 3.x)
 Group:		Development/Libraries
 Requires:	%{name}-gtk3-devel = %{version}-%{release}
 Requires:	vala >= 2:0.14.0
 
-%description -n vala-libappindicator-gtk3
-Vala API for libappindicator library (GTK+ 3.x version).
+%description -n vala-libayatana-appindicator-gtk3
+Vala API for libayatana-appindicator library (GTK+ 3.x version).
 
-%description -n vala-libappindicator-gtk3 -l pl.UTF-8
-API języka Vala do biblioteki libappindicator (wersja GTK+ 3.x).
+%description -n vala-libayatana-appindicator-gtk3 -l pl.UTF-8
+API języka Vala do biblioteki libayatana-appindicator (wersja GTK+
+3.x).
 
 %package apidocs
-Summary:	API documentation for libappindicator library
-Summary(pl.UTF-8):	Dokumentacja API biblioteki libappindicator
+Summary:	API documentation for libayatana-appindicator library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki libayatana-appindicator
 Group:		Documentation
 BuildArch:	noarch
 
 %description apidocs
-API documentation for libappindicator library (both GTK+ 2.x and 3.x
-based).
+API documentation for libayatana-appindicator library (both GTK+ 2.x
+and 3.x based).
 
 %description apidocs -l pl.UTF-8
-Dokumentacja API biblioteki libappindicator (zarówno w wersji GTK+
-2.x, jak i 3.x).
+Dokumentacja API biblioteki libayatana-appindicator (zarówno w wersji
+GTK+ 2.x, jak i 3.x).
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-
-# to allow deprecation warnings
-%{__sed} -i -e 's/-Werror //' src/Makefile.am
 
 %build
+%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 
-export CFLAGS="%{rpmcflags} -fcommon"
 for gtkver in %{?with_gtk2:2} %{?with_gtk3:3}; do
 install -d build-gtk$gtkver
 cd build-gtk$gtkver
@@ -302,18 +277,8 @@ done
 %if %{with gtk2} || %{with gtk3}
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
+%endif
 
-%if %{with gtk2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/appindicator/*.la
-%if %{with static_libs}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/appindicator/*.a
-%endif
-%py_postclean
-%else
-# although mono bindings are built also --with-gtk=3, they are always GTK 2.x based
-[ ! -d $RPM_BUILD_ROOT%{_prefix}/lib/mono ] || %{__rm} -r $RPM_BUILD_ROOT%{_prefix}/lib/mono
-%endif
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -328,21 +293,21 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk2
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog
-%attr(755,root,root) %{_libdir}/libappindicator.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libappindicator.so.1
-%{_libdir}/girepository-1.0/AppIndicator-0.1.typelib
+%attr(755,root,root) %{_libdir}/libayatana-appindicator.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libayatana-appindicator.so.1
+%{_libdir}/girepository-1.0/AyatanaAppIndicator-0.1.typelib
 
 %files gtk2-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libappindicator.so
-%{_includedir}/libappindicator-0.1
-%{_datadir}/gir-1.0/AppIndicator-0.1.gir
-%{_pkgconfigdir}/appindicator-0.1.pc
+%attr(755,root,root) %{_libdir}/libayatana-appindicator.so
+%{_includedir}/libayatana-appindicator-0.1
+%{_datadir}/gir-1.0/AyatanaAppIndicator-0.1.gir
+%{_pkgconfigdir}/ayatana-appindicator-0.1.pc
 
 %if %{with static_libs}
 %files gtk2-static
 %defattr(644,root,root,755)
-%{_libdir}/libappindicator.a
+%{_libdir}/libayatana-appindicator.a
 %endif
 
 %if %{with dotnet}
@@ -363,21 +328,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/appindicator-sharp-0.1.pc
 %endif
 
-%files -n python-appindicator-gtk2
-%defattr(644,root,root,755)
-%dir %{py_sitedir}/appindicator
-%attr(755,root,root) %{py_sitedir}/appindicator/_appindicator.so
-%{py_sitedir}/appindicator/__init__.py[co]
-
-%files -n python-appindicator-gtk2-devel
-%defattr(644,root,root,755)
-%{_datadir}/pygtk/2.0/defs/appindicator.defs
-
 %if %{with vala}
-%files -n vala-libappindicator-gtk2
+%files -n vala-libayatana-appindicator-gtk2
 %defattr(644,root,root,755)
-%{_datadir}/vala/vapi/appindicator-0.1.deps
-%{_datadir}/vala/vapi/appindicator-0.1.vapi
+%{_datadir}/vala/vapi/ayatana-appindicator-0.1.deps
+%{_datadir}/vala/vapi/ayatana-appindicator-0.1.vapi
 %endif
 %endif
 
@@ -385,31 +340,28 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk3
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog
-%attr(755,root,root) %{_libdir}/libappindicator3.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libappindicator3.so.1
-%{_libdir}/girepository-1.0/AppIndicator3-0.1.typelib
+%attr(755,root,root) %{_libdir}/libayatana-appindicator3.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libayatana-appindicator3.so.1
+%{_libdir}/girepository-1.0/AyatanaAppIndicator3-0.1.typelib
 
 %files gtk3-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libappindicator3.so
-%{_includedir}/libappindicator3-0.1
-%{_datadir}/gir-1.0/AppIndicator3-0.1.gir
-%{_pkgconfigdir}/appindicator3-0.1.pc
+%attr(755,root,root) %{_libdir}/libayatana-appindicator3.so
+%{_includedir}/libayatana-appindicator3-0.1
+%{_datadir}/gir-1.0/AyatanaAppIndicator3-0.1.gir
+%{_pkgconfigdir}/ayatana-appindicator3-0.1.pc
 
 %if %{with static_libs}
 %files gtk3-static
 %defattr(644,root,root,755)
-%{_libdir}/libappindicator3.a
+%{_libdir}/libayatana-appindicator3.a
 %endif
 
 %if %{with vala}
-%files -n vala-libappindicator-gtk3
+%files -n vala-libayatana-appindicator-gtk3
 %defattr(644,root,root,755)
-%{_datadir}/vala/vapi/appindicator3-0.1.deps
-%{_datadir}/vala/vapi/appindicator3-0.1.vapi
+%{_datadir}/vala/vapi/ayatana-appindicator3-0.1.deps
+%{_datadir}/vala/vapi/ayatana-appindicator3-0.1.vapi
 %endif
 %endif
 
-%files apidocs
-%defattr(644,root,root,755)
-%{_gtkdocdir}/libappindicator
