@@ -313,8 +313,8 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with dotnet}
 %files -n dotnet-appindicator-sharp-gtk2
 %defattr(644,root,root,755)
-%{_prefix}/lib/mono/gac/appindicator-sharp
-%{_prefix}/lib/mono/gac/policy.0.0.appindicator-sharp
+%{_prefix}/lib/mono/gac/ayatana-appindicator-sharp
+%{_prefix}/lib/mono/gac/policy.0.0.ayatana-appindicator-sharp
 # another location - for non-mono implementations?
 # we don't use it, so it's disabled by -mono patch
 #%dir %{_libdir}/cli/appindicator-sharp-0.1
@@ -324,8 +324,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dotnet-appindicator-sharp-gtk2-devel
 %defattr(644,root,root,755)
-%{_prefix}/lib/mono/appindicator-sharp
-%{_pkgconfigdir}/appindicator-sharp-0.1.pc
+%{_prefix}/lib/mono/ayatana-appindicator-sharp
+%{_pkgconfigdir}/ayatana-appindicator-sharp-0.1.pc
 %endif
 
 %if %{with vala}
