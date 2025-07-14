@@ -242,8 +242,8 @@ GTK+ 2.x, jak i 3.x).
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %{__gtkdocize}
